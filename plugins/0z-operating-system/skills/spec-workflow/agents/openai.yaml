@@ -1,0 +1,5 @@
+interface:
+  display_name: Spec Workflow
+  short_description: Move from spec to checks and review.
+policy:
+  allow_implicit_invocation: false

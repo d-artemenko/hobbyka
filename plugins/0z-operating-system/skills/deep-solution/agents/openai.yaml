@@ -1,0 +1,5 @@
+interface:
+  display_name: Deep Solution
+  short_description: Work one task deeply and write the solution.
+policy:
+  allow_implicit_invocation: false

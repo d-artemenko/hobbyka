@@ -1,0 +1,5 @@
+interface:
+  display_name: Adapt From Feedback
+  short_description: Update project behavior after user feedback.
+policy:
+  allow_implicit_invocation: false

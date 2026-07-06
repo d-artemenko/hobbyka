@@ -1,0 +1,5 @@
+interface:
+  display_name: Maintain Knowledge Base
+  short_description: Keep Markdown indexes and structure coherent.
+policy:
+  allow_implicit_invocation: false

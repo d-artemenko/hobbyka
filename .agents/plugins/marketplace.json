@@ -1,0 +1,20 @@
+{
+  "name": "hobbyka",
+  "interface": {
+    "displayName": "Hobbyka"
+  },
+  "plugins": [
+    {
+      "name": "0z-operating-system",
+      "source": {
+        "source": "local",
+        "path": "./plugins/0z-operating-system"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

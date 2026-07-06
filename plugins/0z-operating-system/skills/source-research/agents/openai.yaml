@@ -1,0 +1,5 @@
+interface:
+  display_name: Source Research
+  short_description: Add and reuse research sources safely.
+policy:
+  allow_implicit_invocation: false

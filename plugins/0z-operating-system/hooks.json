@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/.codex/hooks/check-os.sh\"",
+            "statusMessage": "Checking the project operating system before stopping...",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}
+

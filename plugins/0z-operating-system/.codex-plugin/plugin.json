@@ -1,0 +1,40 @@
+{
+  "name": "0z-operating-system",
+  "version": "0.1.0",
+  "description": "Portable project operating system for Codex workspaces.",
+  "author": {
+    "name": "0z"
+  },
+  "homepage": "https://github.com/d-artemenko/hobbyka",
+  "repository": "https://github.com/d-artemenko/hobbyka",
+  "skills": "./skills/",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "operating-system",
+    "knowledge-base",
+    "skills",
+    "hooks"
+  ],
+  "interface": {
+    "displayName": "0z Operating System",
+    "shortDescription": "Install a portable Codex project operating system.",
+    "longDescription": "0z Operating System packages the durable operating practices from a mature Codex workspace: neutral AGENTS.md generation, local skills, safe hooks, README-first knowledge structure, source research, goal specifications, and repeatable checks. It avoids copying live user memory or secrets.",
+    "developerName": "0z",
+    "category": "Productivity",
+    "websiteURL": "https://github.com/d-artemenko/hobbyka",
+    "privacyPolicyURL": "https://github.com/d-artemenko/hobbyka",
+    "termsOfServiceURL": "https://github.com/d-artemenko/hobbyka",
+    "capabilities": [
+      "Write",
+      "Review",
+      "Automate"
+    ],
+    "brandColor": "#2563EB",
+    "defaultPrompt": [
+      "Install the 0z operating system here.",
+      "Check this workspace against 0z rules.",
+      "Adapt this project after my feedback."
+    ]
+  }
+}

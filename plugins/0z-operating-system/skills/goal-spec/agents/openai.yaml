@@ -1,0 +1,5 @@
+interface:
+  display_name: Goal Spec
+  short_description: Shape a task into a verifiable goal.
+policy:
+  allow_implicit_invocation: false
