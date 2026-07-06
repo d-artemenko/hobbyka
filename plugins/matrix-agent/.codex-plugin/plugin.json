@@ -1,0 +1,40 @@
+{
+  "name": "matrix-agent",
+  "version": "0.1.0",
+  "description": "Codex skill for using the matrix-agent CLI with Matrix rooms.",
+  "author": {
+    "name": "Hobbyka"
+  },
+  "homepage": "https://github.com/d-artemenko/hobbyka",
+  "repository": "https://github.com/d-artemenko/hobbyka",
+  "skills": "./skills/",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "matrix",
+    "cli",
+    "messaging",
+    "agents"
+  ],
+  "interface": {
+    "displayName": "Matrix Agent",
+    "shortDescription": "Use Matrix rooms through the matrix-agent CLI.",
+    "longDescription": "Matrix Agent teaches Codex to inspect Matrix auth state, unread notifications, recent dialogs, room history, room search, message sending, and read acknowledgements through the local matrix-agent CLI without exposing credentials.",
+    "developerName": "Hobbyka",
+    "category": "Productivity",
+    "websiteURL": "https://github.com/d-artemenko/hobbyka",
+    "privacyPolicyURL": "https://github.com/d-artemenko/hobbyka",
+    "termsOfServiceURL": "https://github.com/d-artemenko/hobbyka",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "brandColor": "#2563EB",
+    "defaultPrompt": [
+      "Check my Matrix unread messages.",
+      "Read recent Matrix dialogs.",
+      "Send this reply in Matrix."
+    ]
+  }
+}
