@@ -13,6 +13,10 @@ Use this skill when the user asks to install, update, copy, port, or check the
 ## Workflow
 
 1. Locate the plugin root and the target project root.
+   If marketplace installation failed on Windows with `program not found` while
+   running `git clone`, explain that Git for Windows is missing or not in
+   `PATH`; ask the user to install Git, restart Codex, and verify
+   `git --version`.
 2. Run `scripts/install-os.sh --target <project-root>` from this plugin.
 3. If the target already contains operating-system files, inspect them first.
    Use `--force` only after the user has clearly asked to replace them.

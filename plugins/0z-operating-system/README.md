@@ -14,6 +14,15 @@ plugins/0z-operating-system/scripts/install-os.sh --target /path/to/project
 /path/to/project/agent/bin/check-os
 ```
 
+Windows marketplace installation requires Git for Windows because Codex clones
+the marketplace repository before reading the plugin. If installation fails with
+`program not found`, install Git and restart Codex:
+
+```powershell
+winget install --id Git.Git -e --source winget
+git --version
+```
+
 The installer writes:
 
 - `AGENTS.md`
