@@ -32,6 +32,7 @@ required=(
   "docs/concept.md"
   "docs/behaviour.md"
   "docs/architecture.md"
+  "docs/integrations.md"
   "research/README.md"
   "research/INDEX.md"
   "research/SOURCES.md"

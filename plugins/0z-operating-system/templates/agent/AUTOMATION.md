@@ -12,6 +12,14 @@
 3. Choose exactly one task.
 4. Create a folder in `agent/tasks/` if needed.
 
+## Setup
+
+When this operating system is first installed, create a recurring Codex
+automation if the environment exposes automation tools. The automation should
+ask the agent to run one narrow cycle, update status, run `agent/bin/check-os`,
+and report the result. If automation tools are unavailable, write the blocker
+and next manual command in `STATUS.md`.
+
 ## Investigation
 
 1. Define one to five narrow research areas.
@@ -32,4 +40,3 @@
 3. Run `agent/bin/check-os`.
 4. Commit and push when appropriate.
 5. Report the result briefly.
-

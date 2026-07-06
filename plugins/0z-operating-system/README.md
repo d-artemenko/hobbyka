@@ -32,6 +32,9 @@ operating-system files.
   source research, goal specifications, and specification workflow.
 - A stop hook that runs the local structural check.
 - Neutral starter documents for a new user.
+- Install guidance that explains the plugin, configures automation when the
+  app exposes automation tools, and recommends integrations after local
+  discovery plus `https://www.skills.sh/` search.
 
 ## What Stays Local
 

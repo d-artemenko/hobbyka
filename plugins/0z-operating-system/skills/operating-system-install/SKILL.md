@@ -19,6 +19,15 @@ Use this skill when the user asks to install, update, copy, port, or check the
 4. Run `<project-root>/agent/bin/check-os`.
 5. Check that generated files do not contain personal names, source-machine
    paths, secrets, or copied live task history.
+6. Explain what the plugin installed: Markdown operating files, local skills,
+   hooks, and `agent/bin/check-os`.
+7. Configure a recurring Codex automation when an automation tool is available.
+   If it is unavailable, record the blocker in `STATUS.md`.
+8. Recommend integrations by checking local tools first, then searching
+   `https://www.skills.sh/` for skills covering mail, Telegram, messengers, CRM,
+   1C, calendars, docs, storage, issue trackers, analytics, and project-specific
+   CLIs. Install a chosen skill with `npx skills add <owner/repo>` when the user
+   approves.
 
 ## Boundaries
 
@@ -26,4 +35,3 @@ Use this skill when the user asks to install, update, copy, port, or check the
   another user. Create neutral starter files instead.
 - Do not write secrets into tracked files.
 - Keep local user preferences in ignored local files, not in `AGENTS.md`.
-

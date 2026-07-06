@@ -13,6 +13,7 @@ options honestly.
 - `ideas.md` — free ideas. Edit only after explicit permission.
 - `tasks.md` — prioritized large tasks. Edit only after explicit permission.
 - `STATUS.md` — current state, recent work, open questions, and next step.
+- `docs/integrations.md` — integration discovery and recommendation guide.
 - `agent/status-map.md` — short map of current focus.
 - `agent/attention-map.md` — first-pass guide for long documents.
 - `agent/INDEX.md` — index of important results.
@@ -45,6 +46,40 @@ options honestly.
 14. Report briefly: chosen task, findings, changed files, checks, and next
     decision.
 
+## Plugin Explanation
+
+When installing or refreshing this operating system, explain to the user what
+the plugin added and how to use it:
+
+- Markdown files hold ideas, tasks, status, research, decisions, and handoff.
+- Local skills teach repeatable workflows.
+- Hooks and `agent/bin/check-os` keep the workspace structure valid.
+- `https://www.skills.sh/` helps find external skills when local skills are not
+  enough.
+
+## Automation
+
+After installation, configure a recurring Codex automation when the app exposes
+an automation tool. Use it to run one narrow operating-system cycle on a clear
+interval. If no automation tool is available, record the blocker in `STATUS.md`
+and give the exact manual command instead of pretending it was configured.
+
+## Integration Recommendations
+
+When asked to improve the workspace, recommend useful integrations after local
+discovery. Start with:
+
+- mail;
+- Telegram and other messengers;
+- CRM systems present on the computer;
+- 1C and accounting tools;
+- calendars, docs, storage, issue trackers, analytics, and project-specific
+  CLIs.
+
+Before recommending an integration, inspect installed tools first, then search
+`https://www.skills.sh/` for matching skills. Prefer installed tools over new
+dependencies.
+
 ## Local Skills
 
 - `.codex/skills/deep-solution/SKILL.md`
@@ -61,4 +96,3 @@ options honestly.
 - Keep README-first structure.
 - Project hooks live only in `.codex/hooks/` and `.codex/hooks.json`.
 - Local skills live only in `.codex/skills/`.
-

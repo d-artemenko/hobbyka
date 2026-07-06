@@ -11,3 +11,8 @@ Start with:
 4. `agent/INDEX.md`
 5. `.codex/skills/INDEX.md`
 
+Useful local checks:
+
+```bash
+agent/bin/check-os
+```
