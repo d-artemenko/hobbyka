@@ -24,6 +24,8 @@ Plugin bundles live in:
 
 `matrix-agent` includes the Go CLI source under `plugins/matrix-agent/cli` and its Codex skill under `plugins/matrix-agent/skills/matrix-agent`.
 
+`onec-direct-cli` contains a dependency-free Node.js CLI and a Codex skill for direct read-only HTTP calls to 1C. Credentials stay outside the plugin.
+
 The direct CLI plugins do not bundle credentials. Keep amoCRM secrets in `~/.config/hobbyka/amocrm-direct.env` and 1C secrets in `~/.config/hobbyka/onec-direct.env`.
 
 ## Windows Requirement
