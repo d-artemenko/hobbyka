@@ -1,0 +1,4 @@
+interface:
+  display_name: "Direct 1C CLI"
+  short_description: "Прямые read-only запросы в HTTP-сервис 1С"
+  default_prompt: "Use $onec-cli-agent to query the live 1C HTTP service directly in read-only mode."
