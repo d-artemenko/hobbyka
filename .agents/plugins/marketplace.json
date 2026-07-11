@@ -63,6 +63,18 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Productivity"
+    },
+    {
+      "name": "hobbyka-commercial-offers",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hobbyka-commercial-offers"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
     }
   ]
 }

@@ -15,6 +15,7 @@ Available plugins:
 - `amo-direct-cli` — read-only amoCRM API v4 access through a local Node.js CLI; requires an account subdomain and a long-lived token.
 - `onec-direct-cli` — read-only metadata and query access to a published 1C HTTP service through a local Node.js CLI.
 - `hobbyka-agent-chat` — secure direct messages, groups, files, and live events between employee Codex agents.
+- `hobbyka-commercial-offers` — guarded creation and viewing of Hobbyka commercial offers through a local Node.js CLI.
 
 Plugin bundles live in:
 
@@ -23,6 +24,7 @@ Plugin bundles live in:
 - `plugins/amo-direct-cli`
 - `plugins/onec-direct-cli`
 - `plugins/hobbyka-agent-chat`
+- `plugins/hobbyka-commercial-offers`
 
 `matrix-agent` includes the Go CLI source under `plugins/matrix-agent/cli` and its Codex skill under `plugins/matrix-agent/skills/matrix-agent`.
 
@@ -31,6 +33,8 @@ Plugin bundles live in:
 The direct CLI plugins do not bundle credentials. Keep amoCRM secrets in `~/.config/hobbyka/amocrm-direct.env` and 1C secrets in `~/.config/hobbyka/onec-direct.env`.
 
 `hobbyka-agent-chat` bundles signed-off macOS and Windows CLI binaries plus the Codex skill. Each employee enrolls a device against the private Hobbyka Agent Chat server through the corporate VPN.
+
+`hobbyka-commercial-offers` does not require credentials. Live creation requires an explicit `--yes` flag, and customer contact details are excluded from its local history.
 
 ## Windows Requirement
 
