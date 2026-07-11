@@ -13,6 +13,7 @@ let rpcId = 0
 const usage = () => {
   console.error([
     'Usage:',
+    '  onec-cli.mjs config-check',
     '  onec-cli.mjs health [--raw]',
     '  onec-cli.mjs tools [--raw]',
     '  onec-cli.mjs metadata-list --type TYPE [--name-mask TEXT] [--max-items N] [--raw]',
@@ -42,6 +43,7 @@ const parseDotenv = (content) => {
 
 const loadEnv = () => {
   const explicit = process.env.ONEC_HTTP_ENV_FILE
+  const processEndpointConfigured = Boolean(process.env.ONEC_HTTP_SERVICE_URL || process.env.ONEC_HTTP_BASE_URL)
   const candidates = explicit
     ? [path.resolve(explicit)]
     : [
@@ -52,6 +54,7 @@ const loadEnv = () => {
   for (const envPath of [...new Set(candidates)]) {
     if (!fs.existsSync(envPath)) continue
     for (const [key, value] of Object.entries(parseDotenv(fs.readFileSync(envPath, 'utf8')))) {
+      if (processEndpointConfigured && ['ONEC_HTTP_SERVICE_URL', 'ONEC_HTTP_BASE_URL'].includes(key)) continue
       if (process.env[key] == null) process.env[key] = value
     }
   }
@@ -121,6 +124,7 @@ const config = () => {
   return {
     serviceUrl,
     authorization: authorization || (username ? `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}` : ''),
+    authMode: authorization ? 'explicit-authorization' : (username ? 'basic' : 'none'),
     timeoutMs: Number.isFinite(timeoutMs) && timeoutMs > 0 ? timeoutMs : 60000,
     maxResponseBytes: Number.isFinite(maxResponseBytes) && maxResponseBytes > 0 ? maxResponseBytes : 10485760,
     unlockCode: env('ONEC_HTTP_UNLOCK_CODE')
@@ -269,6 +273,18 @@ const main = async () => {
   if (options.command === 'self-test') return selfTest()
   const cfg = config()
 
+  if (options.command === 'config-check') {
+    return print({
+      ok: true,
+      service_url: cfg.serviceUrl,
+      rpc_url: `${cfg.serviceUrl}/rpc`,
+      auth_mode: cfg.authMode,
+      timeout_ms: cfg.timeoutMs,
+      max_response_bytes: cfg.maxResponseBytes,
+      unlock_code_configured: Boolean(cfg.unlockCode)
+    })
+  }
+
   if (options.command === 'health') {
     const data = await requestJson(cfg, 'GET', 'health')
     if (data?.status !== 'ok') throw new Error(`1C health check returned unexpected data: ${safeDetail(JSON.stringify(data))}`)
@@ -373,4 +389,7 @@ const selfTest = async () => {
   }
 }
 
-main().catch((error) => { console.error(error?.message || String(error)); process.exit(1) })
+main().catch((error) => {
+  console.error(JSON.stringify({ ok: false, error: safeDetail(error?.message || String(error)) }, null, 2))
+  process.exit(1)
+})

@@ -1,0 +1,4 @@
+interface:
+  display_name: "amoCRM Direct CLI"
+  short_description: "Безопасное чтение данных amoCRM через CLI"
+  default_prompt: "Use $amocrm-cli-agent to inspect amoCRM data safely through the direct CLI."

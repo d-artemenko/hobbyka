@@ -1,19 +1,15 @@
 {
   "name": "onec-direct-cli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Direct read-only access from Codex to a published 1C HTTP service through a local CLI, without MCP servers, RAG, OpenCode, or proxies.",
   "author": {
-    "name": "Hobbyka"
+    "name": "Hobbyka",
+    "url": "https://github.com/d-artemenko"
   },
   "homepage": "https://github.com/d-artemenko/hobbyka/tree/main/plugins/onec-direct-cli",
   "repository": "https://github.com/d-artemenko/hobbyka",
-  "keywords": [
-    "codex",
-    "1c",
-    "onec",
-    "cli",
-    "read-only"
-  ],
+  "license": "MIT",
+  "keywords": ["1c", "onec", "cli", "read-only", "hobbyka"],
   "skills": "./skills/",
   "interface": {
     "displayName": "Direct 1C CLI",
@@ -22,7 +18,9 @@
     "developerName": "Hobbyka",
     "category": "Productivity",
     "websiteURL": "https://github.com/d-artemenko/hobbyka/tree/main/plugins/onec-direct-cli",
-    "capabilities": ["Read-only 1C metadata", "Read-only 1C queries"],
+    "privacyPolicyURL": "https://github.com/d-artemenko/hobbyka/blob/main/plugins/onec-direct-cli/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/d-artemenko/hobbyka/blob/main/plugins/onec-direct-cli/TERMS.md",
+    "capabilities": ["Read-only 1C metadata", "Read-only 1C queries", "Local self-test"],
     "defaultPrompt": [
       "Проверь прямое подключение к 1С.",
       "Покажи доступные документы в 1С.",
