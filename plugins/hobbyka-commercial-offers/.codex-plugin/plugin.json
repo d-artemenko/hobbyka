@@ -1,0 +1,30 @@
+{
+  "name": "hobbyka-commercial-offers",
+  "version": "0.1.0",
+  "description": "Create and view Hobbyka commercial offers through the public website API with a guarded local CLI.",
+  "author": {
+    "name": "Hobbyka",
+    "url": "https://github.com/d-artemenko"
+  },
+  "homepage": "https://github.com/d-artemenko/hobbyka/tree/main/plugins/hobbyka-commercial-offers",
+  "repository": "https://github.com/d-artemenko/hobbyka",
+  "license": "MIT",
+  "keywords": ["hobbyka", "commercial-offers", "quotes", "cli", "sales"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Коммерческие предложения Хоббики",
+    "shortDescription": "Создание и просмотр КП через API Хоббики",
+    "longDescription": "Codex создаёт коммерческие предложения Хоббики по артикулам и реквизитам клиента, сохраняет безопасную локальную историю и возвращает ссылки на страницу, PDF и QR-код.",
+    "developerName": "Hobbyka",
+    "category": "Productivity",
+    "websiteURL": "https://github.com/d-artemenko/hobbyka/tree/main/plugins/hobbyka-commercial-offers",
+    "privacyPolicyURL": "https://github.com/d-artemenko/hobbyka/blob/main/plugins/hobbyka-commercial-offers/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/d-artemenko/hobbyka/blob/main/plugins/hobbyka-commercial-offers/TERMS.md",
+    "capabilities": ["Create commercial offers", "View offer links", "Local offer history"],
+    "defaultPrompt": [
+      "Создай коммерческое предложение Хоббики.",
+      "Покажи коммерческое предложение по номеру.",
+      "Покажи последние созданные КП."
+    ]
+  }
+}

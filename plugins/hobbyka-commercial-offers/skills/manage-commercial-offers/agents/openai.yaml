@@ -1,0 +1,4 @@
+interface:
+  display_name: "Коммерческие предложения Хоббики"
+  short_description: "Создание и просмотр КП через API Хоббики"
+  default_prompt: "Используй $manage-commercial-offers, чтобы создать или показать коммерческое предложение."
