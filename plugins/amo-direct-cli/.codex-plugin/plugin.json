@@ -1,0 +1,30 @@
+{
+  "name": "amo-direct-cli",
+  "version": "0.1.0",
+  "description": "Direct read-only access from Codex to amoCRM API v4 through a dependency-free local CLI.",
+  "author": {
+    "name": "Hobbyka",
+    "url": "https://github.com/d-artemenko"
+  },
+  "homepage": "https://github.com/d-artemenko/hobbyka/tree/main/plugins/amo-direct-cli",
+  "repository": "https://github.com/d-artemenko/hobbyka",
+  "license": "MIT",
+  "keywords": ["amocrm", "crm", "cli", "read-only", "hobbyka"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "amoCRM Direct CLI",
+    "shortDescription": "Безопасное чтение amoCRM без MCP-сервера",
+    "longDescription": "Codex напрямую читает сделки, контакты, компании, поля, воронки и пользователей amoCRM через локальный CLI. MCP-сервер, Google OAuth, PostgreSQL и Docker не нужны.",
+    "developerName": "Hobbyka",
+    "category": "Productivity",
+    "websiteURL": "https://github.com/d-artemenko/hobbyka/tree/main/plugins/amo-direct-cli",
+    "privacyPolicyURL": "https://github.com/d-artemenko/hobbyka/blob/main/plugins/amo-direct-cli/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/d-artemenko/hobbyka/blob/main/plugins/amo-direct-cli/TERMS.md",
+    "capabilities": ["Read-only amoCRM API", "Sensitive-field redaction", "Local self-test"],
+    "defaultPrompt": [
+      "Проверь подключение к amoCRM.",
+      "Найди последние сделки в amoCRM.",
+      "Покажи поля сделок amoCRM."
+    ]
+  }
+}
