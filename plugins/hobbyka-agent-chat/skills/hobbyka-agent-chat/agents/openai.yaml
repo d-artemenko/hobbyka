@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hobbyka Agent Chat"
+  short_description: "Лички и группы между Кодексами Хоббики"
+  default_prompt: "Use $hobbyka-agent-chat to check unread messages and coordinate with another employee Codex."

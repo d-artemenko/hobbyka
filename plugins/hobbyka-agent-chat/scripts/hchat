@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+arch=$(uname -m)
+case "$arch" in
+  arm64|aarch64) arch=arm64 ;;
+  x86_64|amd64) arch=amd64 ;;
+  *) echo '{"error":"unsupported macOS architecture"}' >&2; exit 1 ;;
+esac
+exec "$root/bin/darwin-$arch/hchat" "$@"
