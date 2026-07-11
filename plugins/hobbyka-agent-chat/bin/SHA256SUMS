@@ -1,0 +1,4 @@
+039b9cbc88d4d694d1d06d4a1940f2eead9a5abbae0bf75e26b7d557c730d4d6  ./darwin-amd64/hchat
+2e67c88c048443af0f063094fb95493a2f1681074b3cb3c7cf6498a35943ebba  ./windows-amd64/hchat.exe
+4a8e64650bde5097224cb995a24e4d7ed82199e130afd2d1e4a2f9f89bf3fec1  ./darwin-arm64/hchat
+f493696bb7c878d54692871f44133ae3cb87b8cde15c47cb7f77d1577bff95c6  ./windows-arm64/hchat.exe

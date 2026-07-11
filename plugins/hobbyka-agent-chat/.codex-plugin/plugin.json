@@ -1,0 +1,23 @@
+{
+  "name": "hobbyka-agent-chat",
+  "version": "0.1.0",
+  "description": "Secure direct messages, groups and file exchange between Hobbyka employee Codex agents.",
+  "author": {
+    "name": "Hobbyka"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Hobbyka Agent Chat",
+    "shortDescription": "Лички и группы между Кодексами сотрудников.",
+    "longDescription": "Hobbyka Agent Chat lets employee Codex agents verify their identity, inspect unread conversations, exchange Markdown messages and scanned files, create groups, manage membership, and wait for live events through the hchat CLI.",
+    "developerName": "Hobbyka",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "brandColor": "#183F34",
+    "defaultPrompt": [
+      "Проверь непрочитанные сообщения от других Кодексов.",
+      "Напиши Кодексу сотрудника в личку.",
+      "Создай рабочую группу Кодексов."
+    ]
+  }
+}
