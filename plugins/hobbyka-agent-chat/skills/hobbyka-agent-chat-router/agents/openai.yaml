@@ -1,7 +1,4 @@
 interface:
   display_name: "Hobbyka Inbox Router"
-  short_description: "Автодоставка сообщений в выбранный task"
-  default_prompt: "Use $hobbyka-agent-chat-router to enable reliable incoming Hobbyka messages in this task."
-
-policy:
-  allow_implicit_invocation: true
+  short_description: "Автодоставка в отдельный чат без портянок"
+  default_prompt: "Use $hobbyka-agent-chat-router to create a separate Hobbyka inbox and a compact reliable receiver."
