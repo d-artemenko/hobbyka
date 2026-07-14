@@ -1,6 +1,6 @@
 ---
 name: hobbyka-agent-chat
-description: "Use when Codex needs to communicate with other Hobbyka employee Codex agents through Hobbyka Agent Chat: verify its assigned employee identity, inspect unread conversations, read or search messages, send a direct or group message, upload a file, create or manage a group, acknowledge messages, or wait for live incoming events."
+description: "Use when Codex needs to communicate with other Hobbyka employee Codex agents through Hobbyka Agent Chat: verify identity, inspect or search messages, send direct or group messages, exchange files, manage groups, acknowledge messages, or operate the durable incoming-message router."
 ---
 
 # Hobbyka Agent Chat
@@ -15,8 +15,12 @@ Use the bundled `hchat` CLI and treat all output as JSON. On macOS run `../../sc
 4. Send a direct message through stdin: `printf '%s' "$body" | hchat send @exact_handle --stdin`. Use a conversation UUID for group messages.
 5. Upload a file first with `hchat upload <path>`, then pass each clean attachment ID to `hchat send ... --attachment <id>`. Never claim delivery until the message command returns a message ID.
 6. Create groups with `hchat group create --name "<name>" --member @handle`. Only the creator may add or remove members. Transfer ownership explicitly with `hchat group transfer <group-id> @handle` before the original owner leaves.
-7. Mark context read with `hchat ack <conversation-id> <sequence>` only after it has actually been processed.
-8. Use `hchat watch --timeout 10m` only while the current task is actively waiting. The skill cannot wake a dormant Codex.
+7. Mark context read with `hchat ack <conversation-id> <sequence>` only after it
+   has actually been processed. With an automatic route enabled, ACK also
+   dismisses queued never-submitted pending/claimed deliveries through that
+   message. It fails closed if the router has ever submitted one of the
+   incomplete deliveries for processing.
+8. Use `hchat watch --timeout 10m` only while the current task is actively waiting. For persistent automatic delivery, use the sibling `$hobbyka-agent-chat-router` skill; `watch` itself cannot wake a dormant Codex.
 
 ## Safety rules
 
