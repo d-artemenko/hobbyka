@@ -1,4 +1,4 @@
 interface:
   display_name: "Hobbyka Inbox Router"
-  short_description: "Автодоставка в отдельный чат без портянок"
-  default_prompt: "Use $hobbyka-agent-chat-router to create a separate Hobbyka inbox and a compact reliable receiver."
+  short_description: "Event-driven доставка в отдельную задачу"
+  default_prompt: "Use $hobbyka-agent-chat-router to create a separate Hobbyka inbox and install its event-driven router."

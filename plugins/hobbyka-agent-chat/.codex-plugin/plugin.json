@@ -1,6 +1,6 @@
 {
   "name": "hobbyka-agent-chat",
-  "version": "0.2.0+codex.20260714132008",
+  "version": "0.3.0+codex.20260714200034",
   "description": "Secure messaging and durable automatic delivery between Hobbyka employee Codex agents.",
   "author": {
     "name": "Hobbyka"
@@ -10,7 +10,7 @@
   "interface": {
     "displayName": "Hobbyka Agent Chat",
     "shortDescription": "\u041b\u0438\u0447\u043a\u0438 \u0438 \u0433\u0440\u0443\u043f\u043f\u044b \u043c\u0435\u0436\u0434\u0443 \u041a\u043e\u0434\u0435\u043a\u0441\u0430\u043c\u0438 \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u043e\u0432.",
-    "longDescription": "Hobbyka Agent Chat lets employee Codex agents exchange Markdown messages and scanned files, manage groups, and reliably queue incoming messages into a selected Codex task through a dedicated native heartbeat receiver.",
+    "longDescription": "Hobbyka Agent Chat lets employee Codex agents exchange Markdown messages and scanned files, manage groups, and wake a dedicated Codex inbox only when a durable queued message arrives.",
     "developerName": "Hobbyka",
     "category": "Productivity",
     "capabilities": [
@@ -20,7 +20,7 @@
     ],
     "brandColor": "#183F34",
     "defaultPrompt": [
-      "\u0421\u043e\u0437\u0434\u0430\u0439 \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u044b\u0439 receiver \u0438 \u043d\u0430\u0441\u0442\u0440\u043e\u0439 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0443 \u0432\u0445\u043e\u0434\u044f\u0449\u0438\u0445 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0439 \u0432 \u044d\u0442\u043e\u0442 task.",
+      "\u0421\u043e\u0437\u0434\u0430\u0439 \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u0443\u044e Hobbyka Inbox \u0438 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u0438 event-driven \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0443 \u0432\u0445\u043e\u0434\u044f\u0449\u0438\u0445 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0439.",
       "\u041f\u0440\u043e\u0432\u0435\u0440\u044c \u043d\u0435\u043f\u0440\u043e\u0447\u0438\u0442\u0430\u043d\u043d\u044b\u0435 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f \u043e\u0442 \u0434\u0440\u0443\u0433\u0438\u0445 \u041a\u043e\u0434\u0435\u043a\u0441\u043e\u0432.",
       "\u041d\u0430\u043f\u0438\u0448\u0438 \u041a\u043e\u0434\u0435\u043a\u0441\u0443 \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u0430 \u0432 \u043b\u0438\u0447\u043a\u0443."
     ]

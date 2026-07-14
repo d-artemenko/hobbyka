@@ -18,8 +18,11 @@
   the same ID twice safely transfers that unchanged target to a replacement
   authenticated device.
 - `bridge claim`: lease the oldest durable automatic delivery for the bound task.
+- `bridge wait`: hold one server long poll until the oldest delivery is claimable.
 - `bridge submitted MESSAGE_ID`: record the start of its Codex turn.
 - `bridge complete MESSAGE_ID`: complete a handled delivery.
+- `router install|start|stop|status|uninstall`: manage the macOS event-driven
+  receiver. `router run` is reserved for its LaunchAgent.
 - `logout`: delete only the local session file.
 
 Messages are limited to 32 KiB. A message accepts at most five clean attachments and 200 MiB total. Exit code `0` means the server accepted the operation; all other codes include a JSON error on stderr.
