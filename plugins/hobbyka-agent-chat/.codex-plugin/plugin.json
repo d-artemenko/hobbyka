@@ -1,7 +1,7 @@
 {
   "name": "hobbyka-agent-chat",
-  "version": "0.3.0+codex.20260714201749",
-  "description": "Secure messaging and durable automatic delivery between Hobbyka employee Codex agents.",
+  "version": "0.4.0+codex.20260715105105",
+  "description": "Event-driven collaboration between Hobbyka employee Codex agents with VPN-first activation and durable task-bound replies.",
   "author": {
     "name": "Hobbyka"
   },
@@ -9,8 +9,8 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Hobbyka Agent Chat",
-    "shortDescription": "\u041b\u0438\u0447\u043a\u0438 \u0438 \u0433\u0440\u0443\u043f\u043f\u044b \u043c\u0435\u0436\u0434\u0443 \u041a\u043e\u0434\u0435\u043a\u0441\u0430\u043c\u0438 \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u043e\u0432.",
-    "longDescription": "Hobbyka Agent Chat lets employee Codex agents exchange Markdown messages and scanned files, manage groups, and wake a dedicated Codex inbox only when a durable queued message arrives.",
+    "shortDescription": "\u0424\u043e\u043d\u043e\u0432\u043e\u0435 \u043e\u0431\u0449\u0435\u043d\u0438\u0435 \u0446\u0438\u0444\u0440\u043e\u0432\u044b\u0445 \u0434\u0432\u043e\u0439\u043d\u0438\u043a\u043e\u0432 \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u043e\u0432.",
+    "longDescription": "Hobbyka Agent Chat lets employee Codex agents autonomously request missing company knowledge, safely escalate to their owners, exchange messages and files, and wake only the exact originating task or dedicated Inbox when durable work arrives.",
     "developerName": "Hobbyka",
     "category": "Productivity",
     "capabilities": [
@@ -20,9 +20,9 @@
     ],
     "brandColor": "#183F34",
     "defaultPrompt": [
-      "\u0421\u043e\u0437\u0434\u0430\u0439 \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u0443\u044e Hobbyka Inbox \u0438 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u0438 event-driven \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0443 \u0432\u0445\u043e\u0434\u044f\u0449\u0438\u0445 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0439.",
-      "\u041f\u0440\u043e\u0432\u0435\u0440\u044c \u043d\u0435\u043f\u0440\u043e\u0447\u0438\u0442\u0430\u043d\u043d\u044b\u0435 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f \u043e\u0442 \u0434\u0440\u0443\u0433\u0438\u0445 \u041a\u043e\u0434\u0435\u043a\u0441\u043e\u0432.",
-      "\u041d\u0430\u043f\u0438\u0448\u0438 \u041a\u043e\u0434\u0435\u043a\u0441\u0443 \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u0430 \u0432 \u043b\u0438\u0447\u043a\u0443."
+      "\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0438 \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u0430 \u043f\u043e \u043b\u0438\u0447\u043d\u043e\u043c\u0443 AmneziaWG-\u043f\u0440\u043e\u0444\u0438\u043b\u044e \u0438 \u043d\u0430\u0441\u0442\u0440\u043e\u0439 Hobbyka Inbox.",
+      "\u0417\u0430\u043f\u0440\u043e\u0441\u0438 \u0443 \u041a\u043e\u0434\u0435\u043a\u0441\u0430 \u043d\u0443\u0436\u043d\u043e\u0433\u043e \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u0430 \u043d\u0435\u0434\u043e\u0441\u0442\u0430\u044e\u0449\u0438\u0435 \u0440\u0430\u0431\u043e\u0447\u0438\u0435 \u0437\u043d\u0430\u043d\u0438\u044f.",
+      "\u041e\u0431\u0440\u0430\u0431\u043e\u0442\u0430\u0439 \u0432\u0445\u043e\u0434\u044f\u0449\u0438\u0439 \u0437\u0430\u043f\u0440\u043e\u0441 \u043a\u0430\u043a \u0431\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u044b\u0439 \u0441\u0435\u043a\u0440\u0435\u0442\u0430\u0440\u044c \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430."
     ]
   }
 }

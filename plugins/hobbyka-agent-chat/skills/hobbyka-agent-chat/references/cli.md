@@ -1,6 +1,7 @@
 # hchat CLI contract
 
-- `enroll --server URL --code CODE --device NAME [--ca-file PATH]`: consume a 15-minute code and store the device token.
+- `activate --display-name NAME --handle @HANDLE --position POSITION --device NAME`: under a cross-process session lock, persist a pending device token, consume the matching VPN activation grant, and retry or correct pending identity/device on the same HTTPS server without changing token or CA.
+- `enroll --server URL --code CODE --device NAME [--ca-file PATH]`: recovery flow; consume a 15-minute code and store the device token.
 - `whoami`: return the authenticated user and device.
 - `users [query]`: list active and disabled handles.
 - `dialogs` / `inbox`: list authorized conversations and unread counts.
@@ -11,6 +12,10 @@
 - `group create --name NAME [--member @handle]`, `group add ID @handle`, `group remove ID @handle`, `group transfer ID @handle`.
 - `ack ID SEQUENCE`: advance the user's read cursor.
 - `watch [--timeout 10m]`: emit server-sent events as JSON Lines.
+- `profile get @handle`, `profile set @handle --stdin`, `profile due`: read or update the owner's server-side private contact profiles and list due reviews.
+- `request start @handle --stdin [--parent-request ID] [--idempotency-key UUID]`, `request reply ID --stdin [--idempotency-key UUID]`, `request status ID working|input-required|answered`, `request updates`, `request seen ID MESSAGE_ID`, `request done ID`, `request list`: operate durable task-bound agent requests. Without an explicit key, start/reply keep only a semantic SHA-256 fingerprint, UUID and timestamp in a mode-`0600` 24-hour pending journal, retry once, and reuse that UUID when the same command is rerun after an uncertain response.
+- `processing claim MESSAGE_ID`, `processing release MESSAGE_ID`, `processing complete MESSAGE_ID`: atomically own a non-Inbox message in the current `CODEX_THREAD_ID`; Inbox uses bridge ownership instead.
+- `hook session-start|post-tool-use --thread THREAD_ID`: emit Codex hook-protocol JSON or no output. Reserved for bundled fail-open hooks.
 - `bridge route`: show the persistent user/device/task binding.
 - `bridge bind --target-thread THREAD_ID`: create the first binding.
 - `bridge rebind --from-thread OLD_ID --target-thread NEW_ID`: explicitly move

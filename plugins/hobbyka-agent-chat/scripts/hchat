@@ -1,6 +1,9 @@
 #!/bin/sh
 set -eu
 root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+: "${HCHAT_SERVER:=https://172.29.172.1}"
+: "${HCHAT_CA_FILE:=$root/assets/hobbyka-chat-root.crt}"
+export HCHAT_SERVER HCHAT_CA_FILE
 arch=$(uname -m)
 case "$arch" in
   arm64|aarch64) arch=arm64 ;;

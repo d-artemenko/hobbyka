@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hobbyka Contact Directory"
+  short_description: "Активировать аккаунт и вести контакты"
+  default_prompt: "Use $hobbyka-contact-directory to activate this employee over AmneziaWG or complete the due private contact review."
