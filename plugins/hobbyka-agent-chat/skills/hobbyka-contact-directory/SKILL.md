@@ -1,6 +1,6 @@
 ---
 name: hobbyka-contact-directory
-description: "Activate a pre-issued Hobbyka account over AmneziaWG, finish first-use Codex setup, list employee identities, and maintain the employee-owner's private per-contact profiles. Use when Hobbyka Agent Chat is first installed, activation or Inbox routing is incomplete, a contact is new or underspecified, the weekly contact review is due, or the owner asks to update who to contact and what may be shared."
+description: "Create or activate a Hobbyka identity from any connected personal AmneziaWG peer, finish first-use Codex setup, list employee identities, and maintain the employee-owner's private per-contact profiles. Use when Hobbyka Agent Chat is first installed, activation or Inbox routing is incomplete, a contact is new or underspecified, the weekly contact review is due, or the owner asks to update who to contact and what may be shared."
 ---
 
 # Hobbyka contact directory
@@ -22,17 +22,20 @@ second local contacts database.
    one `request_user_input`; never request an enrollment code. Derive the
    device label as `DISPLAY_NAME Codex` instead of asking a fourth setup
    question.
-4. Activate the pending VPN grant once:
+4. Register once through the connected live VPN peer:
 
    `hchat activate --display-name "$name" --handle "$handle" --position "$position" --device "$name Codex"`
 
-   VPN source address is the bootstrap proof. Before the request, the CLI
+   VPN source address and its live AmneziaWG public key are the bootstrap proof;
+   no pre-created account, enrollment code, or pending grant is required. Before the request, the CLI
    persists a new revocable device token in a pending `0600` session and reuses
    it if the response is lost; it never prints the token. If the handle is
    already taken, ask the owner for another handle and rerun activation against
    the same server: the CLI updates only pending identity/device fields while
-   preserving the token and CA. Never alter identity silently. If activation
-   reports no pending grant, stop instead of switching servers or VPN profiles.
+   preserving the token and CA. Never alter identity silently. Distinguish failures:
+   ask to connect the personal profile when VPN is absent; stop and report a server-side
+   peer/configuration problem when the live peer is unknown or the helper is unavailable;
+   use recovery enrollment for an additional device when the peer is already claimed.
 5. Run `hchat whoami`, require the new identity, then use
    `$hobbyka-agent-chat-router` to create/bind the dedicated Inbox and install
    its event-driven LaunchAgent. Do not create a polling automation.
