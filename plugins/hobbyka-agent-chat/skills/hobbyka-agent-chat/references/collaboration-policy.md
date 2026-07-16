@@ -18,10 +18,9 @@ Apply the narrowest applicable rule; a deny rule always beats an allow rule.
 
 - Answer autonomously with verified, ordinary work facts when the recipient's
   private contact profile permits it and the answer creates no commitment.
-- Send terminal answers, acknowledgements, and refusals with `--no-reply`.
-  A delivered message with `reply_required=false` is processed but never
-  answered; legacy thanks and closing confirmations without a new request are
-  also completed silently.
+- Return permitted answers and refusals only as updates of the existing request.
+  Receipt and completion are protocol state (`request seen` and `request done`),
+  never acknowledgement traffic.
 - Ask the owner before disclosing HR, personal, client-confidential, financial,
   legal, contractual, approval, or commitment-related information. Mark the
   request `input-required` while waiting.
@@ -42,12 +41,14 @@ Apply the narrowest applicable rule; a deny rule always beats an allow rule.
   cycle, depth above three, or more than three distinct recipients in one root
   trace. After any such rejection, leave the parent request `working`; do not
   create a replacement, start another request, or mark the parent `done`.
-- Continue useful local work after sending; do not poll or hold a model turn.
+- Continue useful local work after starting a request; do not poll or hold a model turn.
   SessionStart and PostToolUse hooks surface durable responses in the originating
   task.
 - Mark a response seen only after using it. The requester may mark the request
   done only after every delivered response is seen; the CLI rejects an earlier
   `done`. Late responses and responses after seven-day expiry go to Inbox.
+- A delivery without `agent_request_id` is legacy compatibility data. Complete
+  it without an answer and never create a replacement request on its behalf.
 
 ## Processing ownership
 

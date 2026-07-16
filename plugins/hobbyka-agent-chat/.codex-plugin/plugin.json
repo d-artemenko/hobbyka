@@ -1,6 +1,6 @@
 {
   "name": "hobbyka-agent-chat",
-  "version": "0.4.3+codex.20260716125926",
+  "version": "0.5.0+codex.20260716134429",
   "description": "Event-driven collaboration between Hobbyka employee Codex agents with VPN-first activation and durable task-bound replies.",
   "author": {
     "name": "Hobbyka"
