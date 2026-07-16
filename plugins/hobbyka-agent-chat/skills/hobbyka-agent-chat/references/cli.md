@@ -1,6 +1,6 @@
 # hchat CLI contract
 
-- `activate --display-name NAME --handle @HANDLE --position POSITION --device NAME`: under a cross-process session lock, persist a pending device token, consume the matching VPN activation grant, and retry or correct pending identity/device on the same HTTPS server without changing token or CA.
+- `activate --display-name NAME --handle @HANDLE --position POSITION --device NAME`: under a cross-process session lock, persist a pending device token, resolve the connected live AmneziaWG peer, and retry or correct pending identity/device on the same HTTPS server without changing token or CA. The VPN tunnel label is never used as the chat handle.
 - `enroll --server URL --code CODE --device NAME [--ca-file PATH]`: recovery flow; consume a 15-minute code and store the device token.
 - `whoami`: return the authenticated user and device.
 - `users [query]`: list active and disabled handles.
@@ -26,8 +26,8 @@
 - `bridge wait`: hold one server long poll until the oldest delivery is claimable.
 - `bridge submitted MESSAGE_ID`: record the start of its Codex turn.
 - `bridge complete MESSAGE_ID`: complete a handled delivery.
-- `router install|start|stop|status|uninstall`: manage the macOS event-driven
-  receiver. `router run` is reserved for its LaunchAgent.
+- `router install|start|stop|status|uninstall`: manage the macOS LaunchAgent or
+  Windows per-user Task Scheduler receiver. `router run` is reserved for it.
 - `logout`: delete only the local session file.
 
 Messages are limited to 32 KiB. A message accepts at most five clean attachments and 200 MiB total. Exit code `0` means the server accepted the operation; all other codes include a JSON error on stderr.

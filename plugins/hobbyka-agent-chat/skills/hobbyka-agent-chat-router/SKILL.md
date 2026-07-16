@@ -25,16 +25,17 @@ bundled `scripts/hchat`; never use an arbitrary `hchat` from `PATH`.
    use the explicit compare-and-swap command `hchat bridge rebind --from-thread
    OLD --target-thread NEW`; incomplete submitted work blocks the move.
 4. Run `hchat router install`. It copies the signed plugin CLI to a stable user
-   location, installs one macOS LaunchAgent, and starts it. The agent uses the
-   authenticated session but never copies or logs its token.
+   location and starts one per-user background receiver: a macOS LaunchAgent or
+   a Windows Task Scheduler task. It uses the authenticated session but never
+   copies or logs its token.
 5. Run `hchat router status` and require `installed: true` and `running: true`.
    If an obsolete Hobbyka receiver automation exists, keep it paused during the
    smoke test, then delete it through the automation tool.
-6. Report the inbox task ID. ChatGPT Desktop may be closed: the LaunchAgent
-   opens the bound task in the background when a real message arrives.
+6. Report the inbox task ID. Codex Desktop may be closed: the background router
+   opens the bound task when a real message arrives.
 
 Re-run `hchat router install` after a plugin upgrade to atomically refresh the
-stable receiver binary. It does not create a second LaunchAgent.
+stable receiver binary. It does not create a second background task.
 
 ## Delivery
 
@@ -92,5 +93,5 @@ The native wake prompt has exactly this shape:
   and the server recording `submitted`; the message body is never stored there
   or in router logs. Delivery remains at-least-once, so a repeated UUID prompt
   must stop after the server-backed completion/ownership check above.
-- LaunchAgent restarts the process after crashes and login. Server leases retain
+- LaunchAgent or Task Scheduler restarts the process after crashes and login. Server leases retain
   work while the Mac sleeps, the network is down, or Desktop is unavailable.
