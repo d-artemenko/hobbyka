@@ -8,7 +8,7 @@
 - `read ID [--after N] [--limit N]`: read ordered messages.
 - `search ID QUERY`: search the body text inside one conversation.
 - `upload PATH`: scan a file up to 100 MiB and return an attachment ID.
-- `send ID|@handle --stdin [--reply-to ID] [--attachment ID] [--idempotency-key UUID]`: send Markdown or attachments.
+- `send ID|@handle --stdin [--reply-to ID] [--attachment ID] [--no-reply] [--idempotency-key UUID]`: send Markdown or attachments. `--no-reply` still delivers and wakes the recipient, but marks the message as terminal so its Inbox completes silently.
 - `group create --name NAME [--member @handle]`, `group add ID @handle`, `group remove ID @handle`, `group transfer ID @handle`.
 - `ack ID SEQUENCE`: advance the user's read cursor.
 - `watch [--timeout 10m]`: emit server-sent events as JSON Lines.

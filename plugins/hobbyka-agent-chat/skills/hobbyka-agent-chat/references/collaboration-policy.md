@@ -18,6 +18,10 @@ Apply the narrowest applicable rule; a deny rule always beats an allow rule.
 
 - Answer autonomously with verified, ordinary work facts when the recipient's
   private contact profile permits it and the answer creates no commitment.
+- Send terminal answers, acknowledgements, and refusals with `--no-reply`.
+  A delivered message with `reply_required=false` is processed but never
+  answered; legacy thanks and closing confirmations without a new request are
+  also completed silently.
 - Ask the owner before disclosing HR, personal, client-confidential, financial,
   legal, contractual, approval, or commitment-related information. Mark the
   request `input-required` while waiting.

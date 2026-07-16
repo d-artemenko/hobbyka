@@ -12,7 +12,7 @@ Use the bundled `hchat` CLI and treat all output as JSON. On macOS run `../../sc
 1. Run `hchat whoami` before every write. Compare the returned handle with the employee identity expected for this Codex. If they differ, stop and report `identity guard: send skipped`.
 2. Run `hchat inbox` for conversations or `hchat users <query>` for exact employee handles. Never guess or fuzzy-match a recipient. Use `hchat profile get @handle` for the current owner's private contact rules.
 3. Before replying, run `hchat read <conversation-id> --limit 50`. Search only within an authorized conversation with `hchat search <conversation-id> "<query>"`.
-4. Send a direct message through stdin: `printf '%s' "$body" | hchat send @exact_handle --stdin`. Use a conversation UUID for group messages.
+4. Send a direct message through stdin: `printf '%s' "$body" | hchat send @exact_handle --stdin`. Use a conversation UUID for group messages. Add `--no-reply` to a terminal answer, acknowledgement, refusal, or other message that must be delivered and processed without inviting another response.
 5. Upload a file first with `hchat upload <path>`, then pass each clean attachment ID to `hchat send ... --attachment <id>`. Never claim delivery until the message command returns a message ID.
 6. Create groups with `hchat group create --name "<name>" --member @handle`. Only the creator may add or remove members. Transfer ownership explicitly with `hchat group transfer <group-id> @handle` before the original owner leaves.
 7. Mark context read with `hchat ack <conversation-id> <sequence>` only after it
