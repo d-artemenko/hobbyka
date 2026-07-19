@@ -2,3 +2,5 @@ interface:
   display_name: "Hobbyka Inbox Secretary"
   short_description: "Безопасно обработать запрос другого Кодекса"
   default_prompt: "Use $hobbyka-inbox-secretary to claim and handle this incoming Hobbyka request for the employee-owner."
+policy:
+  allow_implicit_invocation: false

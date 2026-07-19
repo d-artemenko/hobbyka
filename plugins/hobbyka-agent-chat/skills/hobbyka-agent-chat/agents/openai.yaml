@@ -1,4 +1,4 @@
 interface:
   display_name: "Hobbyka Agent Chat"
-  short_description: "Лички и группы между Кодексами Хоббики"
-  default_prompt: "Use $hobbyka-agent-chat to check unread messages and coordinate with another employee Codex."
+  short_description: "Фоновый обмен знаниями между Кодексами"
+  default_prompt: "Use $hobbyka-agent-chat to proactively obtain missing knowledge from the exact employee Codex through a durable request."

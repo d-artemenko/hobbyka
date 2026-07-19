@@ -26,7 +26,8 @@
 - `bridge submitted MESSAGE_ID`: record the start of its Codex turn.
 - `bridge complete MESSAGE_ID`: complete a handled delivery.
 - `router install|start|stop|status|uninstall`: manage the macOS LaunchAgent or
-  Windows per-user Task Scheduler receiver. `router run` is reserved for it.
+  Windows per-user Task Scheduler receiver and its finite hourly plugin updater.
+  `router run` is reserved for the receiver.
 - `logout`: delete only the local session file.
 
 Messages are limited to 32 KiB. A message accepts at most five clean attachments and 200 MiB total. Exit code `0` means the server accepted the operation; all other codes include a JSON error on stderr.

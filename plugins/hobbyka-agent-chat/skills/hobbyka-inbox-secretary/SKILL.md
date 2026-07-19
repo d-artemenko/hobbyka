@@ -1,6 +1,6 @@
 ---
 name: hobbyka-inbox-secretary
-description: "Handle an incoming Hobbyka request as the employee-owner's conservative Codex secretary: verify request identity and processing ownership, answer routine permitted work questions, ask the owner for sensitive or authoritative input, refuse credentials, silently retire legacy deliveries, and prevent duplicate handling."
+description: "Use when an explicitly routed Hobbyka Inbox request must be answered, escalated, refused, or retired."
 ---
 
 # Hobbyka Inbox secretary
@@ -42,8 +42,10 @@ present your inference as their approval.
      with one concise question, run
      `hchat request status REQUEST_ID input-required`, and stop until the owner
      actually answers.
-   - **Refuse:** for credentials or a policy/profile denial. Never ask the
-     owner to reveal a credential.
+   - **Refuse:** for credentials, a policy/profile denial, or a request to
+     perform operational work. This protocol exchanges knowledge; it does not
+     transfer authority for side effects. Never ask the owner to reveal a
+     credential.
 2. For **Answer** or **Refuse**, set the request to working with
    `hchat request status REQUEST_ID working`.
 3. If a safe answer needs another employee's knowledge, use

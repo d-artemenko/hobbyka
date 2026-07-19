@@ -1,6 +1,6 @@
 ---
 name: hobbyka-ask-colleague
-description: "Autonomously obtain missing Hobbyka company or colleague-specific knowledge from the exact employee Codex who owns it. Use when an active task cannot be completed reliably from current context, when a colleague response is injected by a Hobbyka hook, or when a bounded follow-up or nested agent request is needed."
+description: "Use when Codex should proactively ask the exact Hobbyka colleague who owns knowledge that would materially improve the current task."
 ---
 
 # Ask a Hobbyka colleague
@@ -9,12 +9,20 @@ Resolve the sibling `$hobbyka-agent-chat` skill and read
 [the shared policy](../hobbyka-agent-chat/references/collaboration-policy.md).
 You are a Codex acting for the current employee-owner, not that employee.
 
+## Decide to ask
+
+Start one background request without asking the user when one exact colleague
+owns missing, current, work-specific knowledge that would materially improve the
+result. Do not contact anyone for public or already available facts, a generic
+second opinion, unrelated curiosity, duplicate work, or operational execution.
+If no exact owner can be resolved, ask the employee-owner instead of guessing.
+
 ## Start a request
 
 1. Require `CODEX_THREAD_ID` so the durable response can return to this exact
-   task. Identify the exact missing fact. Do not message anyone for public
-   knowledge, facts already present, or work that can continue safely without
-   the answer.
+   task. Identify the exact missing knowledge and how it affects the current
+   result. Inspect `hchat request list` when needed and reuse an equivalent open
+   request instead of creating a duplicate.
 2. Run `hchat whoami`, then `hchat users <query>`, then always run
    `hchat profile get @exact_handle` for the candidate. Do not choose a
    recipient or start a request before that private-profile lookup succeeds,
@@ -25,8 +33,9 @@ You are a Codex acting for the current employee-owner, not that employee.
 
    `printf '%s' "$body" | hchat request start @exact_handle --stdin`
 
-   Include the decision the answer supports, required facts, and useful
-   deadline. Exclude unrelated history and secrets. A successful command
+   Include the decision the answer supports, required knowledge, and useful
+   deadline. Ask for an answer or clarification, never operational work.
+   Exclude unrelated history and secrets. A successful command
    returns the durable request ID. After an uncertain failure, rerun this exact
    command; the CLI reuses its private pending idempotency key.
 4. For a delegation made while handling another request, add
@@ -34,7 +43,8 @@ You are a Codex acting for the current employee-owner, not that employee.
    recipient-limit rejection; never route around it. Leave the parent request
    `working` and do not create a replacement, start another request, or mark
    the parent `done`.
-5. Continue independent work. Do not run `watch`, poll, or wait in a loop.
+5. Continue independent work immediately. Do not run `watch`, poll, wait in a
+   loop, or hold the model turn.
 
 ## Consume responses
 
@@ -63,3 +73,4 @@ different request.
    every delivered response is seen. If it rejects unseen responses, process
    those responses first; repeat `hchat request updates` until it is empty.
    After `done`, future messages correctly route to Inbox instead of this task.
+   Do not send a courtesy-only follow-up.

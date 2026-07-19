@@ -1,4 +1,4 @@
 interface:
   display_name: "Ask a Hobbyka colleague"
   short_description: "Самостоятельно получить недостающие знания"
-  default_prompt: "Use $hobbyka-ask-colleague to ask the exact employee Codex for the missing company knowledge and continue this task when the durable response arrives."
+  default_prompt: "Use $hobbyka-ask-colleague to ask the exact employee Codex for missing company knowledge, continue local work without polling, and consume the durable response when it arrives."

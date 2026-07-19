@@ -1,6 +1,6 @@
 ---
 name: hobbyka-contact-directory
-description: "Onboard a nontechnical Hobbyka employee after plugin installation, create or resume a chat identity from any connected personal AmneziaWG peer, finish the dedicated Inbox and hook-trust setup, list colleagues, and maintain private per-contact profiles. Use immediately after Install → Continue, when the owner asks to register, or whenever identity, routing, hooks, or contact setup is incomplete."
+description: "Use when onboarding or registering a Hobbyka employee, when their Inbox, hooks, or contact profiles are incomplete, or when the owner asks whether Hobbyka Agent Chat is installed, configured, healthy, ready, or working correctly."
 ---
 
 # Hobbyka contact directory
@@ -17,6 +17,35 @@ status`, and the user's latest setup answer. Do not redo a completed step or
 create a second Inbox. A catalog/CLI installation needs a new Codex task before
 the plugin is available; `@hobbyka-agent-chat → Install → Continue` resumes the
 original request and must continue onboarding without stopping.
+
+## Verify an existing installation
+
+When asked whether the plugin is installed or working, run this checklist before
+answering. Record `pass`, `fail`, or `manual confirmation needed` for every row:
+
+1. Run `hchat version` and `hchat whoami`. Require an authenticated active user.
+   Show the returned `display_name` and `position` to the owner; both must be
+   non-empty and match the owner. Do not infer either value from the VPN label.
+2. Run `hchat bridge route` and inspect available Codex tasks. Require its
+   `target_thread_id` to name one existing projectless task exactly `Входящие`.
+   A UUID alone does not prove that the correct Inbox still exists.
+3. Run `hchat router status`. Require `installed: true`, `running: true`, and
+   `updater_installed: true`.
+4. Run `codex features list`. Require `default_mode_request_user_input: true`.
+5. Open `/hooks` and require this plugin's `SessionStart` and `PostToolUse` hooks
+   to be present and Trusted. Hook files on disk do not prove trust. If trust
+   cannot be inspected directly, mark this row unverified and ask the owner to
+   open `/hooks`; never silently count it as passed.
+6. Run `hchat users`, excluding the owner. Count entries with
+   `profile_complete: true`; require at least three complete frequent-colleague
+   profiles, or every colleague when fewer than three exist. Do not run
+   `hchat profile due` during a health check because it advances the weekly
+   reminder window.
+
+Report the checklist compactly with the observed name, position, Inbox task,
+router state, hook state, and completed-profile count. Never report the
+installation as healthy while any row failed or remains unverified. Repair only
+from the first failed onboarding step below; do not recreate working state.
 
 ### 1. Collect the chat identity
 
@@ -78,8 +107,10 @@ Then:
 2. Bind it once with `hchat bridge bind --target-thread ID`; use the router
    skill's compare-and-swap rebind only when a different idle route must move.
 3. Run `hchat router install`, then require `hchat router status` to report
-   `installed: true` and `running: true`. This installs a per-user LaunchAgent
-   on macOS or Task Scheduler task on Windows. Never create polling automation.
+   `installed: true`, `running: true`, and `updater_installed: true`. This
+   installs a per-user receiver and finite hourly plugin updater through
+   LaunchAgents on macOS or Task Scheduler on Windows. The updater does not
+   wake a model. Never create polling automation.
 
 ### 4. Obtain hook trust
 

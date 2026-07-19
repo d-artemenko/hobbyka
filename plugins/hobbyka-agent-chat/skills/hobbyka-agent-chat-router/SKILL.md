@@ -25,17 +25,19 @@ bundled `scripts/hchat`; never use an arbitrary `hchat` from `PATH`.
    use the explicit compare-and-swap command `hchat bridge rebind --from-thread
    OLD --target-thread NEW`; incomplete submitted work blocks the move.
 4. Run `hchat router install`. It copies the signed plugin CLI to a stable user
-   location and starts one per-user background receiver: a macOS LaunchAgent or
-   a Windows Task Scheduler task. It uses the authenticated session but never
-   copies or logs its token.
-5. Run `hchat router status` and require `installed: true` and `running: true`.
+   location and starts one per-user background receiver plus a finite hourly
+   plugin updater: macOS LaunchAgents or Windows Task Scheduler tasks. They use
+   the authenticated session but never copy or log its token.
+5. Run `hchat router status` and require `installed: true`, `running: true`, and
+   `updater_installed: true`.
    If an obsolete Hobbyka receiver automation exists, keep it paused during the
    smoke test, then delete it through the automation tool.
 6. Report the inbox task ID. Codex Desktop may be closed: the background router
    opens the bound task when a real message arrives.
 
-Re-run `hchat router install` after a plugin upgrade to atomically refresh the
-stable receiver binary. It does not create a second background task.
+Codex refreshes the Git marketplace and installed plugin cache. The hourly
+updater invokes that native upgrade and atomically refreshes the stable receiver
+binary only when the marketplace revision changes; it never starts a model turn.
 
 ## Delivery
 
@@ -78,8 +80,8 @@ The native wake prompt has exactly this shape:
 
 - Pause/resume: `hchat router stop` / `hchat router start`.
 - Inspect: `hchat router status` plus `hchat bridge route`.
-- Remove: `hchat router uninstall`; keep the inbox task unless the user asks to
-  archive it.
+- Remove: `hchat router uninstall`; this also removes the updater. Keep the
+  inbox task unless the user asks to archive it.
 - Rebind only while stopped; restart after route and target agree.
 
 ## Guarantees
@@ -95,5 +97,6 @@ The native wake prompt has exactly this shape:
   and the server recording `submitted`; the message body is never stored there
   or in router logs. Delivery remains at-least-once, so a repeated UUID prompt
   must stop after the server-backed completion/ownership check above.
-- LaunchAgent or Task Scheduler restarts the process after crashes and login. Server leases retain
-  work while the Mac sleeps, the network is down, or Desktop is unavailable.
+- LaunchAgent or Task Scheduler restarts the process after crashes and login.
+  The finite updater checks Git hourly without waking Codex. Server leases retain
+  work while the computer sleeps, the network is down, or Desktop is unavailable.
