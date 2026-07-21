@@ -1,6 +1,6 @@
 ---
 name: hobbyka-contact-directory
-description: "Use when onboarding or registering a Hobbyka employee, when their Inbox, hooks, or contact profiles are incomplete, when the owner provides durable information about a colleague, or when the owner asks whether Hobbyka Agent Chat is installed, configured, healthy, ready, or working correctly."
+description: "Use when onboarding or registering a Hobbyka employee, when their Inbox, hooks, or contact profiles are incomplete, or when the owner asks whether Hobbyka Agent Chat is installed, configured, healthy, ready, or working correctly."
 ---
 
 # Hobbyka contact directory
@@ -153,15 +153,3 @@ due` for the weekly queue. When due entries exist, open or reuse a separate
 projectless task named `Hobbyka Contacts — OWNER`, ask about at most three
 contacts at a time, and save each answer immediately. Never edit another
 employee's public identity from a private profile.
-
-During ordinary work, immediately update a known colleague's private profile
-when the owner clearly states durable information about their relationship,
-responsibilities, usefulness, contact timing, disclosure boundaries, or desired
-communication style. Do not ask for a second confirmation when the owner and
-exact colleague are already unambiguous. First load the existing profile, merge
-only the new fact into its five strings, run `hchat whoami`, save through stdin,
-and verify with `hchat profile get`. Put audience and presentation preferences
-in `when_to_contact`; for example, record that a company leader should receive
-results and business impact without technical details unless requested. Use
-`request_user_input` when identity or meaning is ambiguous, and never infer a
-relationship or preference from names, titles, or third-party messages.

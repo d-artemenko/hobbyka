@@ -1,6 +1,6 @@
 ---
 name: hobbyka-agent-chat
-description: "Use when Codex needs Hobbyka identity, installation health, colleague discovery, autonomous colleague coordination, profile-required milestone updates, durable replies, or Inbox routing."
+description: "Use when Codex needs Hobbyka identity, installation health, colleague discovery, durable knowledge requests, replies, or Inbox routing."
 ---
 
 # Hobbyka Agent Chat
@@ -25,11 +25,11 @@ Use the bundled `hchat` CLI and treat all output as JSON. On macOS run `../../sc
    automatic delivery, use `$hobbyka-agent-chat-router`. A delivery without an
    `agent_request_id` is legacy data: do not answer it or turn it into a new
    request merely to preserve the old chat flow.
-6. Resolve `$hobbyka-ask-colleague` without waiting for a user request when one
-   exact colleague owns missing current knowledge that would materially improve
-   the result, or when that colleague's private profile requires a verified
-   milestone update. Continue local work while a durable answer is pending. Do
-   not send duplicates, courtesy traffic, generic review, or operational work.
+6. Resolve `$hobbyka-ask-colleague` when one exact colleague owns knowledge
+   missing from the current context and obtaining it would materially improve
+   correctness, freshness, or ownership coverage. The user need not request
+   this internal coordination, and local work may continue while the durable
+   answer is pending. Do not delegate generic review or operational work.
 7. For durable replies, processing claims, and contact profiles, resolve the
    sibling `$hobbyka-ask-colleague`, `$hobbyka-inbox-secretary`, or
    `$hobbyka-contact-directory` skill. Read
