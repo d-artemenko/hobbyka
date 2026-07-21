@@ -1,6 +1,6 @@
 ---
 name: hobbyka-ask-colleague
-description: "Use when Codex should proactively ask the exact Hobbyka colleague who owns knowledge that would materially improve the current task."
+description: "Use when Codex should autonomously contact the exact Hobbyka colleague who owns missing current knowledge, or send a verified milestone required by the owner's private contact profile."
 ---
 
 # Ask a Hobbyka colleague
@@ -9,13 +9,15 @@ Resolve the sibling `$hobbyka-agent-chat` skill and read
 [the shared policy](../hobbyka-agent-chat/references/collaboration-policy.md).
 You are a Codex acting for the current employee-owner, not that employee.
 
-## Decide to ask
+## Decide to contact
 
 Start one background request without asking the user when one exact colleague
 owns missing, current, work-specific knowledge that would materially improve the
-result. Do not contact anyone for public or already available facts, a generic
-second opinion, unrelated curiosity, duplicate work, or operational execution.
-If no exact owner can be resolved, ask the employee-owner instead of guessing.
+result, or when that colleague's private profile explicitly requires a verified
+milestone update and its threshold has been met. Do not contact anyone for a
+generic second opinion, unchanged status, courtesy traffic, duplicate work, or
+operational execution. If no exact recipient can be resolved, ask the
+employee-owner instead of guessing.
 
 ## Start a request
 
@@ -33,9 +35,11 @@ If no exact owner can be resolved, ask the employee-owner instead of guessing.
 
    `printf '%s' "$body" | hchat request start @exact_handle --stdin`
 
-   Include the decision the answer supports, required knowledge, and useful
-   deadline. Ask for an answer or clarification, never operational work.
-   Exclude unrelated history and secrets. A successful command
+   For missing knowledge, include the decision the answer supports, required
+   knowledge, and useful deadline. For a profile-required milestone, state only
+   the verified outcome and its relevant effect in the profile's preferred
+   style; do not request a courtesy acknowledgement. Never request operational
+   work. Exclude unrelated history and secrets. A successful command
    returns the durable request ID. After an uncertain failure, rerun this exact
    command; the CLI reuses its private pending idempotency key.
 4. For a delegation made while handling another request, add

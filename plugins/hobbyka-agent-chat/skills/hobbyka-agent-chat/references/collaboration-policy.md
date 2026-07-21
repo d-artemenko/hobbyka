@@ -37,10 +37,14 @@ Apply the narrowest applicable rule; a deny rule always beats an allow rule.
 - Start one narrow background request when an exact colleague owns knowledge
   missing from the current context and that knowledge would materially improve
   the current result. The user need not ask for this internal coordination.
+- Send one narrow verified milestone update when the recipient's private profile
+  explicitly requires it and the recorded threshold has been met. Match the
+  profile's audience and presentation style; do not request acknowledgement.
 - Continue useful local work after sending the request. A task need not be
   blocked before collaboration is worthwhile.
-- Do not contact colleagues for public or already available facts, a generic
-  second opinion, unrelated curiosity, or operational work they should execute.
+- Otherwise do not contact colleagues for public or already available facts, a
+  generic second opinion, unchanged status, unrelated curiosity, courtesy
+  traffic, or operational work they should execute.
 - An agent request transfers a question and minimum necessary context, never
   authority for side effects. The recipient answers, asks its owner, or refuses.
 
