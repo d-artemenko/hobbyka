@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import fs from 'node:fs'
+import dns from 'node:dns'
 import http from 'node:http'
+import net from 'node:net'
 import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -23,7 +25,7 @@ const usage = () => {
     '',
     'Required: ONEC_HTTP_SERVICE_URL or ONEC_HTTP_BASE_URL',
     'Optional: ONEC_HTTP_SERVICE_ROOT, ONEC_HTTP_USERNAME, ONEC_HTTP_PASSWORD, ONEC_HTTP_AUTHORIZATION,',
-    '          ONEC_HTTP_TIMEOUT_MS, ONEC_HTTP_UNLOCK_CODE, ONEC_HTTP_ENV_FILE'
+    '          ONEC_HTTP_CONNECT_IP, ONEC_HTTP_TIMEOUT_MS, ONEC_HTTP_UNLOCK_CODE, ONEC_HTTP_ENV_FILE'
   ].join('\n'))
 }
 
@@ -121,14 +123,32 @@ const config = () => {
   const password = process.env.ONEC_HTTP_PASSWORD == null ? '' : String(process.env.ONEC_HTTP_PASSWORD)
   const timeoutMs = Number(env('ONEC_HTTP_TIMEOUT_MS', '60000'))
   const maxResponseBytes = Number(env('ONEC_HTTP_MAX_RESPONSE_BYTES', '10485760'))
+  const connectIp = env('ONEC_HTTP_CONNECT_IP')
+  if (connectIp && !net.isIP(connectIp)) throw new Error('ONEC_HTTP_CONNECT_IP must be an IPv4 or IPv6 address')
   return {
     serviceUrl,
+    serviceHostname: parsedUrl.hostname,
+    connectIp,
     authorization: authorization || (username ? `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}` : ''),
     authMode: authorization ? 'explicit-authorization' : (username ? 'basic' : 'none'),
     timeoutMs: Number.isFinite(timeoutMs) && timeoutMs > 0 ? timeoutMs : 60000,
     maxResponseBytes: Number.isFinite(maxResponseBytes) && maxResponseBytes > 0 ? maxResponseBytes : 10485760,
     unlockCode: env('ONEC_HTTP_UNLOCK_CODE')
   }
+}
+
+const overrideLookup = (hostname, address) => {
+  if (!address) return () => {}
+  const family = net.isIP(address)
+  const original = dns.lookup
+  dns.lookup = (requested, options, callback) => {
+    if (typeof options === 'function') { callback = options; options = {} }
+    if (requested !== hostname) return original(requested, options, callback)
+    queueMicrotask(() => options?.all
+      ? callback(null, [{ address, family }])
+      : callback(null, address, family))
+  }
+  return () => { dns.lookup = original }
 }
 
 const endpoint = (cfg, suffix) => {
@@ -272,12 +292,14 @@ const main = async () => {
   if (options.command === 'help') return usage()
   if (options.command === 'self-test') return selfTest()
   const cfg = config()
+  overrideLookup(cfg.serviceHostname, cfg.connectIp)
 
   if (options.command === 'config-check') {
     return print({
       ok: true,
       service_url: cfg.serviceUrl,
       rpc_url: `${cfg.serviceUrl}/rpc`,
+      connect_ip: cfg.connectIp || null,
       auth_mode: cfg.authMode,
       timeout_ms: cfg.timeoutMs,
       max_response_bytes: cfg.maxResponseBytes,
@@ -379,11 +401,14 @@ const selfTest = async () => {
     try { validateReadOnlyQuery('УДАЛИТЬ ИЗ Справочник.Номенклатура') } catch { blocked = true }
     let manualLimitBlocked = false
     try { validateReadOnlyQuery('ВЫБРАТЬ ПЕРВЫЕ 1 1 КАК Value') } catch { manualLimitBlocked = true }
+    const restoreLookup = overrideLookup('onec.internal', '10.8.1.20')
+    const forcedAddresses = await new Promise((resolve, reject) => dns.lookup('onec.internal', { all: true }, (error, addresses) => error ? reject(error) : resolve(addresses)))
+    restoreLookup()
     const sentArguments = calls.find((call) => call.method === 'tools/call' && call.params?.name === 'execute_query')?.params?.arguments
-    if (health?.status !== 'ok' || listed.result?.tools?.[2]?.name !== 'execute_query' || !String(metadataList.data).includes('ЗаказКлиента') || !String(metadata.data).includes('СуммаДокумента') || result.data?.rowCount !== 1 || !blocked || !manualLimitBlocked || sentArguments?.params?.Порог !== 1 || calls.length !== 4) {
+    if (health?.status !== 'ok' || listed.result?.tools?.[2]?.name !== 'execute_query' || !String(metadataList.data).includes('ЗаказКлиента') || !String(metadata.data).includes('СуммаДокумента') || result.data?.rowCount !== 1 || !blocked || !manualLimitBlocked || forcedAddresses[0]?.address !== '10.8.1.20' || sentArguments?.params?.Порог !== 1 || calls.length !== 4) {
       throw new Error('Self-test returned an unexpected result')
     }
-    print({ ok: true, direct: true, checks: ['basic-auth', 'health', 'direct-rpc', 'tools-list', 'metadata-list', 'metadata-structure', 'query-call', 'query-params', 'response-parser', 'write-query-block', 'manual-limit-block'] })
+    print({ ok: true, direct: true, checks: ['basic-auth', 'health', 'direct-rpc', 'tools-list', 'metadata-list', 'metadata-structure', 'query-call', 'query-params', 'response-parser', 'write-query-block', 'manual-limit-block', 'connect-ip-override'] })
   } finally {
     await new Promise((resolve) => server.close(resolve))
   }

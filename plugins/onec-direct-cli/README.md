@@ -17,10 +17,13 @@ ONEC_HTTP_BASE_URL=https://server/BaseName
 ONEC_HTTP_SERVICE_ROOT=mcp
 ONEC_HTTP_USERNAME=ReadOnlyUser
 ONEC_HTTP_PASSWORD=
+ONEC_HTTP_CONNECT_IP=
 ONEC_HTTP_TIMEOUT_MS=60000
 ```
 
 You can provide a complete service address through `ONEC_HTTP_SERVICE_URL=https://server/BaseName/hs/mcp` instead of `BASE_URL` plus `SERVICE_ROOT`. The CLI also supports `.env` in the current working directory or skill directory, and an explicit file through `ONEC_HTTP_ENV_FILE`.
+
+Set `ONEC_HTTP_CONNECT_IP` to a private VPN address when DNS still points elsewhere. The CLI connects to that IP while HTTPS continues to verify the hostname from `ONEC_HTTP_SERVICE_URL`.
 
 Never commit credentials. The 1C user must have server-side read-only rights.
 

@@ -45,10 +45,12 @@ ONEC_HTTP_BASE_URL=http://server/BaseName
 ONEC_HTTP_SERVICE_ROOT=mcp
 ONEC_HTTP_USERNAME=ReadOnlyUser
 ONEC_HTTP_PASSWORD=
+ONEC_HTTP_CONNECT_IP=
 ONEC_HTTP_TIMEOUT_MS=60000
 ```
 
 Можно указать готовый адрес сервиса через `ONEC_HTTP_SERVICE_URL=http://server/BaseName/hs/mcp` вместо пары `BASE_URL` + `SERVICE_ROOT`.
+Если DNS ещё указывает на внешний адрес, задать частный VPN-адрес через `ONEC_HTTP_CONNECT_IP`: CLI подключится к нему, сохранив проверку HTTPS по имени из `ONEC_HTTP_SERVICE_URL`.
 
 ## Жёсткие границы
 
