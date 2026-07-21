@@ -1,4 +1,4 @@
 interface:
   display_name: "Direct 1C CLI"
-  short_description: "Прямые read-only запросы в HTTP-сервис 1С"
-  default_prompt: "Use $onec-cli-agent to query the live 1C HTTP service directly in read-only mode."
+  short_description: "Read-only запросы и отчёты из живой 1С"
+  default_prompt: "Use $onec-cli-agent to build a reusable Python report recipe from live read-only 1C data."

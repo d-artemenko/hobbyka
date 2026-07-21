@@ -1,6 +1,6 @@
 {
   "name": "onec-direct-cli",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Direct read-only access from Codex to a published 1C HTTP service through a local CLI, without MCP servers, RAG, OpenCode, or proxies.",
   "author": {
     "name": "Hobbyka",
